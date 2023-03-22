@@ -37,17 +37,17 @@ fn run_cairo(exercise: &Exercise) -> Result<(), ()> {
     progress_bar.enable_steady_tick(100);
     let output = exercise.run_cairo();
 
-    if let Some(error) = output.as_ref().err(){
+    if let Some(error) = output.as_ref().err() {
         progress_bar.finish_and_clear();
         println!("Err");
-        println!("{}", error.to_string());
+        println!("{error}");
 
         println!("Normal");
-        println!("{}", error.to_string());
+        println!("{error}");
         Err(())
     } else {
         let message = output.unwrap();
-        println!("{}", message);
+        println!("{message}");
         success!("Successfully ran {}", exercise);
         Ok(())
     }
@@ -62,17 +62,17 @@ fn test_cairo(exercise: &Exercise) -> Result<(), ()> {
     progress_bar.enable_steady_tick(100);
     let output = exercise.test_cairo();
 
-    if let Some(error) = output.as_ref().err(){
+    if let Some(error) = output.as_ref().err() {
         progress_bar.finish_and_clear();
         println!("Err");
-        println!("{}", error.to_string());
+        println!("{error}");
 
         println!("Normal");
-        println!("{}", error.to_string());
+        println!("{error}");
         Err(())
     } else {
         let message = output.unwrap();
-        println!("{}", message);
+        println!("{message}");
         success!("Successfully ran {}", exercise);
         Ok(())
     }

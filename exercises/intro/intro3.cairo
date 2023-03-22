@@ -7,6 +7,6 @@ fn add(a: felt, b: felt) -> felt {
     return c;
 }
 
-fn main() -> felt {
+fn main() -> felt252 {
    add(3, 5) 
 }

@@ -5,7 +5,7 @@
 // Young Starkling, Joe, tried to write his own `sub` function, but his function
 // won't compile. Can you help him out?
 
-fn add(a: felt, b: felt) -> felt {
+fn add(a: felt252, b: felt252) -> felt252 {
     a + b
 }
 
@@ -14,7 +14,7 @@ fn sub(a: felt, b: felt) -> felt{
     a - b
 }
 
-fn main() -> felt {
+fn main() -> felt252 {
    add(3, 5);
    sub(11, 7)
 }

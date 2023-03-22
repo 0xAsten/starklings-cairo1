@@ -1,7 +1,9 @@
 // variables3.cairo
 // Execute `starklings hint variables3` or use the `hint` watch subcommand for a hint.
 
+use debug::PrintTrait;
+
 fn main() {
-    let x: felt = 1;
-    debug::print_felt(x);
+    let x: felt252 = 1;
+    x.print();
 }

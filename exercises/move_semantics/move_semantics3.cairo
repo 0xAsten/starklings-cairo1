@@ -6,40 +6,27 @@
 // I AM NOT DONE
 
 use array::ArrayTrait;
-use debug::print;
+use array::ArrayTCloneImpl;
+use array::SpanTrait;
+use clone::Clone;
+use debug::PrintTrait;
 
 fn main() {
     let arr0 = ArrayTrait::new();
 
     let mut arr1 = fill_arr(arr0);
 
-    print(clone_array(@arr1));
+    arr1.span().snapshot.clone().print();
 
     arr1.append(88);
 
-    print(clone_array(@arr1));
+    arr1.span().snapshot.clone().print();
 }
 
-fn fill_arr(arr: Array::<felt>) -> Array::<felt> {
+fn fill_arr(arr: Array<felt252>) -> Array<felt252> {
     arr.append(22);
     arr.append(44);
     arr.append(66);
 
     arr
-}
-
-
-// Don't change these functions! They are used to print the output.
-fn clone_array(arr: @Array::<felt>) -> Array::<felt> {
-    let mut new_arr = ArrayTrait::new();
-    clone_array_(arr, ref new_arr);
-    new_arr
-}
-
-fn clone_array_(src: @Array::<felt>, ref dst: Array::<felt>) {
-    if src.len() == dst.len() {
-        return ();
-    }
-    dst.append(*src.at(dst.len()));
-    clone_array_(src, ref dst);
 }

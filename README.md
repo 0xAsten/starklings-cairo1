@@ -15,11 +15,13 @@
 
 ## Setup and run
 
-0. Make sure you have Rust and Cargo installed with `nightly` toolchain. With rustup,
-   - `curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly`
-   - Or `Customise installation` then `Default toolchain?` set to `nightly` and everything else empty.
-1. Run `cargo run --bin starklings`, this might take a while the first time.
-2. You should see an intro message a little like this.
+Make sure you have Rust and Cargo installed with the `default` toolchain.  
+With rustup `curl https://sh.rustup.rs -sSf | sh -s`
+
+1. Clone the repo and go in the directory,  
+   `git clone https://github.com/shramee/starklings-cairo1.git && cd starklings-cairo1`.
+2. Run `cargo run --bin starklings`, this might take a while the first time.
+3. You should see this intro message, run `cargo run --bin starklings watch` when you are ready!
 
 ```
 starklings - An interactive tutorial to get started with Cairo and Starknet
@@ -59,11 +61,7 @@ first exercise. Make sure to have your editor open!
 
 ## Inspiration
 
-- [Rustlings](https://github.com/rust-lang/rustlings), starklings is forked from Rustlings. Thanks to all the original [authors and contributors](https://github.com/rust-lang/rustlings)
-
-## Contributing
-
-### _Work in progress_
+-   [Rustlings](https://github.com/rust-lang/rustlings), starklings is forked from Rustlings. Thanks to all the original [authors and contributors](https://github.com/rust-lang/rustlings)
 
 ## Testing
 
@@ -78,3 +76,42 @@ cargo test cairo
 ```
 cargo test
 ```
+
+## Contributing
+
+Thanks for your interest in the project. You can fork the repo, create a branch with a descriptive name (maybe the issue number and a word or two to describe it) and submit a pull request to the `dev` branch of this repo.
+
+### Branches
+
+We have 2 active branches,
+
+1. `dev` This is where new development happens. All pull requests should be made to this branch.
+2. `main` This is for cloning and running starklings. `dev` is merged into `main` after a second set of testing.
+
+### Adding new exercises
+
+1. New exercises can be added in `./exercises` directory.
+2. Insert information about the exercise in `./info.toml` file. For example
+    ```toml
+    [[exercises]]
+    name = "new_exercise"
+    path = "exercises/new_module/new_exercise.cairo"
+    mode = "compile" # or "test"
+    hint = """"""
+    ```
+3. Check that the [tests](#testing) pass.
+4. Send your PR to `dev` branch of the repo!
+
+### Updating Rust logic/Cairo version
+
+1. [Test](#testing) your changes.
+2. Make sure you have solutions to all the exercises in `./solutions` directory.
+3. Run `cargo run --bin starklings compile_solutions` to confirm all exercise solutions still compile.
+4. Make a pull requests to `dev` branch of the repo!
+
+### Merging `dev` into `main` (maintainers)
+
+1. Create a PR from `dev` branch to `master` branch.
+2. Run all tests, and check solutions with `cargo run --bin starklings compile_solutions`.
+3. Check to make sure no new changes were merged into `dev` since the PR was created.
+4. If everything makes sense, merge away!

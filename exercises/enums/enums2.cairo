@@ -3,18 +3,17 @@
 
 // I AM NOT DONE
 
-use debug::print;
-use debug::print_felt;
+use debug::PrintTrait;
 use array::ArrayTrait;
 use traits::Into;
 
-#[derive(Copy)]
-enum Message {// TODO: define the different variants used below
+#[derive(Copy, Drop)]
+enum Message { // TODO: define the different variants used below
 }
 
 
 fn main() {
-    let mut messages: Array::<Message> = ArrayTrait::new();
+    let mut messages: Array<Message> = ArrayTrait::new();
     messages.append(Message::Quit(()));
     messages.append(Message::Echo('hello world'));
     messages.append(Message::Move((10_u32, 30_u32)));
@@ -35,7 +34,7 @@ impl MessageImpl of MessageTrait::<Message> {
     }
 }
 
-fn print_messages_recursive(messages: Array::<Message>, index: u32) {
+fn print_messages_recursive(messages: Array<Message>, index: u32) {
     if index >= messages.len() {
         return ();
     }
@@ -45,30 +44,24 @@ fn print_messages_recursive(messages: Array::<Message>, index: u32) {
 }
 
 
-trait PrintTrait<T> {
-    fn print(self: T);
-}
-
 impl MessagePrintImpl of PrintTrait::<Message> {
     fn print(self: Message) {
-        print_felt('___MESSAGE BEGINS___');
+        ('___MESSAGE BEGINS___').print();
         match self {
-            Message::Quit(()) => print_felt('Quit'),
-            Message::Echo(msg) => print_felt(msg),
+            Message::Quit(()) => ('Quit').print(),
+            Message::Echo(msg) => msg.print(),
             Message::Move((a, b)) => {
-                print_felt(a.into());
-                print_felt(b.into())
+                a.print();
+                b.print();
             },
             Message::ChangeColor((
                 red, green, blue
             )) => {
-                print_felt(red.into());
-                print_felt(green.into());
-                print_felt(blue.into())
+                red.print();
+                green.print();
+                blue.print();
             }
         }
-        print_felt('___MESSAGE ENDS___');
+        ('___MESSAGE ENDS___').print();
     }
 }
-
-impl MessageArrayDrop of Drop::<Array::<Message>>;

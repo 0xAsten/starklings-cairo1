@@ -4,6 +4,8 @@
 
 // I AM NOT DONE
 
+use debug::PrintTrait;
+
 #[derive(Drop, Copy)]
 enum Message { // TODO: implement the message variant types based on their usage below
 }
@@ -24,7 +26,7 @@ struct State {
 trait StateTrait {
     fn change_color(ref self: State, new_color: (u8, u8, u8));
     fn quit(ref self: State);
-    fn echo(ref self: State, s: felt);
+    fn echo(ref self: State, s: felt252);
     fn move_position(ref self: State, p: Point);
     fn process(ref self: State, message: Message);
 }
@@ -38,8 +40,8 @@ impl StateImpl of StateTrait {
         self = State { color: color, position: position, quit: true,  };
     }
 
-    fn echo(ref self: State, s: felt) {
-        debug::print_felt(s);
+    fn echo(ref self: State, s: felt252) {
+        s.print();
     }
 
     fn move_position(ref self: State, p: Point) {

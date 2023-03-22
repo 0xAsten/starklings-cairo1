@@ -7,8 +7,8 @@
 use array::ArrayTrait;
 use option::OptionTrait;
 
-fn create_array() -> Array::<felt> {
-    let mut a = ArrayTrait::new(); // something to change here...
+fn create_array() -> Array<felt252> {
+    let a = ArrayTrait::new(); // something to change here...
     a.append(0);
     a.append(1);
     a.append(2);
@@ -25,6 +25,5 @@ fn test_arrays3() {
     a.at(2_usize);
 }
 
-// Don't mind this for now.
-impl OptionDrop of Drop::<Option::<@felt>>;
-
+// Don't mind this
+impl DropFeltSnapshot of Drop::<@felt252>;
