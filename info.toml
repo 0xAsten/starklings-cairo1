@@ -245,6 +245,13 @@ Note that you need to deconstruct some message variants
 in the match expression to get value in the variant.
 """
 
+[[exercises]]
+name = "enums4"
+path = "exercises/enums/enums4.cairo"
+mode = "test"
+hint = """
+"""
+
 # OPTIONS
 
 [[exercises]]
