@@ -59,13 +59,22 @@ impl AnimalDogImpl of AnimalTrait::<Dog> {
     }
 }
 
-// TODO: implement FishTrait for the type Fish
+// implement FishTrait for the type Fish
+impl FishImpl of FishTrait {
+    fn swim(ref self: Fish) -> () {
+        self.distance += 1_u32;
+    }
+}
 
-// TODO: implement DogTrait for the type Dog
+// implement DogTrait for the type Dog
+impl DogImpl of DogTrait {
+    fn walk(ref self: Dog) -> () {
+        self.distance += 1_u32;
+    }
+}
 
 #[test]
 fn test_traits3() {
-    // Don't modify this test!
     let mut salmon: Fish = AnimalTrait::new();
     salmon.swim();
     assert(salmon.make_noise() == 'blub', 'Wrong noise');
